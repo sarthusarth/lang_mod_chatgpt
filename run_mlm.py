@@ -298,38 +298,9 @@ def main():
     if data_args.dataset_name is not None:
         # Downloading and loading a dataset from the hub.
         raw_datasets = load_from_disk(data_args.dataset_name)
-        
-        #raw_datasets['train'] = raw_datasets['train'].add_column('lower_article', [i.lower() for i in raw_datasets['train']['article']])
-        #raw_datasets['test'] = raw_datasets['test'].add_column('lower_article', [i.lower() for i in raw_datasets['test']['article']])
+        # since we only need a validation data for mlm task
         raw_datasets['validation'] = raw_datasets['test']
-        #temp = raw_datasets['train'].train_test_split(test_size=2000)
-        #raw_datasets['train'] = temp['train']
-        #raw_datasets['validation'] = temp['test']
-        '''
-        raw_datasets = load_from_disk(
-            data_args.dataset_name,
-            #data_args.dataset_config_name,
-            #cache_dir=model_args.cache_dir,
-            #use_auth_token=True if model_args.use_auth_token else None,
-            #streaming=data_args.streaming,
-        )
-        if "validation" not in raw_datasets.keys():
-            raw_datasets["validation"] = load_from_disk(
-                data_args.dataset_name,
-                #data_args.dataset_config_name,
-                split=f"train[:{data_args.validation_split_percentage}%]",
-                #cache_dir=model_args.cache_dir,
-                #use_auth_token=True if model_args.use_auth_token else None,
-                #streaming=data_args.streaming,
-            )
-            raw_datasets["train"] = load_from_disk(
-                data_args.dataset_name,
-                #data_args.dataset_config_name,
-                split=f"train[{data_args.validation_split_percentage}%:]",
-                #cache_dir=model_args.cache_dir,
-                #use_auth_token=True if model_args.use_auth_token else None,
-                #streaming=data_args.streaming,
-            )'''
+
     
     # See more about loading any type of standard or custom dataset (from files, python dict, pandas DataFrame, etc) at
     # https://huggingface.co/docs/datasets/loading_datasets.html.

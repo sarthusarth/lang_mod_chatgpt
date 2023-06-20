@@ -18,7 +18,8 @@ pip3 install -r requirements.txt
 ### Training the tokenizers
 
 ```shell
-python train_tok.py --model roberta-base --data path_to_dataset --text_col cnn --save_path path_to_save_tokenizer
+python train_tok.py --model roberta-base --data path_to_dataset
+                    --text_col cnn --save_path path_to_save_tokenizer
 ```
 
 ### Model Pretraining
